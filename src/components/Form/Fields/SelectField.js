@@ -12,6 +12,16 @@ export default React.memo(function SelectField(props) {
   const { name, options, defaultValue } = props;
   const [usersApiResponse] = useRecoilState(UsersState);
 
+  const orderOptions = options.sort(function (a, b) {
+    if (a.value < b.value) {
+      return -1;
+    }
+    if (a.value > b.value) {
+      return 1;
+    }
+    return 0;
+  });
+
   return (
     !isEmpty(usersApiResponse) && (
       <Form.Item
@@ -26,7 +36,7 @@ export default React.memo(function SelectField(props) {
           optionFilterProp="children"
           showSearch
         >
-          {options.map((option, index) => (
+          {orderOptions.map((option, index) => (
             <Option key={index} value={option.value}>
               {option.value}
             </Option>
