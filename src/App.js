@@ -16,6 +16,7 @@ import ErrorHandler from "./components/ErrorHandler/ErrorHandler";
 
 function App() {
   const [error, setError] = useRecoilState(ErrorState);
+
   return (
     <div className="App">
       <Router>
